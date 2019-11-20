@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         桌面动画助手
-// @namespace    http://tampermonkey.net/
+// @namespace    https://saltzmanalaric.github.io
 // @version      1.5.2
 // @description  Desk animate helper!
 // @author       Saltzman
@@ -17,6 +17,7 @@
 // @grant        GM_getResourceText
 // @grant        GM_registerMenuCommand
 // @run-at       document-end
+// @icon         https://saltzmanalaric.github.io/favicon.ico
 // @require https://cdn.jsdelivr.net/gh/SaltzmanAlaric/weekly@v1.0.6/lib/L2Dwidget.min.js
 // @require https://cdn.jsdelivr.net/gh/SaltzmanAlaric/weekly@v1.0.6/lib/L2Dwidget.0.min.js
 // ==/UserScript==
