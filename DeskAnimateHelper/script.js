@@ -17,6 +17,7 @@
 // @grant        GM_getResourceText
 // @grant        GM_registerMenuCommand
 // @run-at       document-end
+// @noframes
 // @icon         https://saltzmanalaric.github.io/favicon.ico
 // @require https://cdn.jsdelivr.net/gh/SaltzmanAlaric/weekly@v1.0.6/lib/L2Dwidget.min.js
 // @require https://cdn.jsdelivr.net/gh/SaltzmanAlaric/weekly@v1.0.6/lib/L2Dwidget.0.min.js
@@ -159,7 +160,7 @@
 
     var r = settingsObj.model == -1 ? parseInt(Math.random() * models.length) : settingsObj.model;
     //r=10;
-    if (!document.getElementById("live2d-widget") && window.frames==window.parent && !settingsObj.hide) {
+    if (!document.getElementById("live2d-widget") && !settingsObj.hide) {
         L2Dwidget.init({
             "model": {
                 "jsonPath": "https://unpkg.com/live2d-widget-model-" + models[r].model + "@1.0.5/assets/"+ models[r].model + ".model.json",
