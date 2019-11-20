@@ -4,14 +4,13 @@ live2D引用的是`https://github.com/xiazeyu/live2d-widget.js`仓库内容
 
 - 配置项
 
- - 1.启用脚本
-![](https://cdn.jsdelivr.net/gh/SaltzmanAlaric/FigureBed/20191120151701.png)
-
+  - 1.启用脚本
+  ![](https://cdn.jsdelivr.net/gh/SaltzmanAlaric/FigureBed/20191120151701.png)
 
   - 2.点击live2d配置
-![](https://cdn.jsdelivr.net/gh/SaltzmanAlaric/FigureBed/20191120151702.png)
+   ![](https://cdn.jsdelivr.net/gh/SaltzmanAlaric/FigureBed/20191120151702.png)
 
- - 3.配置完成后点击保存即可。
+  - 3.配置完成后点击保存即可。
 
 - 动画共有16个model随机选择，你也可以自定义修改脚本中所有的`models[r]`的r值（0-15），r=10的模型点击动画身体会告诉你当前日期信息，点击头部会显示当前浏览的网页信息。
 
