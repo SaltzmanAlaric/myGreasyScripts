@@ -1,3 +1,5 @@
+## 桌面动画助手(Desk animate helper)
+
 live2D引用的是`https://github.com/xiazeyu/live2d-widget.js`仓库内容
 
 - 配置项
