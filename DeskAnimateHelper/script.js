@@ -127,7 +127,7 @@
         let Container = document.createElement('div');
         Container.setAttribute("style","background-color: transparent;display:none;");
         Container.id = "live2d-settings-container";
-        var content= "<div id='live2d-settings' style='padding:10px;position: fixed;top: 0.5vw;right: 1vw;z-index: 999999;text-align:left;background-color: white;'><fieldset id='deskAnimate' style='border:2px groove #ccc;-moz-border-radius:3px;border-radius:3px;padding:4px 9px 6px 9px;margin:2px;display:block;width:auto;height:auto'><legend style='color: red;' title='桌面动画助手相关设置'>桌面动画助手设置V" + version+"</legend>\n";
+        var content= "<div id='live2d-settings' style='padding:10px;position: fixed;top: 0.5vw;right: 1vw;z-index: 999999;text-align:left;background-color: white;'><fieldset id='deskAnimate' style='border:2px groove #ccc;-moz-border-radius:3px;border-radius:3px;padding:4px 9px 6px 9px;margin:2px;display:block;width:auto;height:auto'><legend><a target='_blank' href='https://greasyfork.org/zh-CN/scripts/392403' style='color: red;' title='桌面动画助手相关设置'>桌面动画助手设置V" + version+"</a></legend>\n";
         content +="<table><tr><td>model类型：</td><td><input name='live2d-model' value='-1' "+ (settingsObj.model==-1? "checked" : "")+" type='radio'>随机</td></tr>";
         for(var i=0;i<models.length;i++) {
             content += "<tr><td><input name='live2d-model' value='"+i+"' "+(settingsObj.model==i? "checked" : "")+" type='radio'>"+models[i].model+"</td>";
