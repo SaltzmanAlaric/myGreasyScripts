@@ -7,8 +7,9 @@
 // @license      MIT
 // @date         2019-11-14
 // @modified     2019-11-20
-// @exclude      *//greasyfork.org*
-// @exclude      *//github.com/*
+// @exclude      *://greasyfork.org*
+// @exclude      *://github.com*
+// @exclude      *://*.github.io*
 // @match        *://**/*
 // @grant        GM_getValue
 // @grant        GM.getValue
@@ -19,8 +20,8 @@
 // @run-at       document-end
 // @noframes
 // @icon         https://saltzmanalaric.github.io/favicon.ico
-// @require https://cdn.jsdelivr.net/gh/SaltzmanAlaric/weekly@v1.0.6/lib/L2Dwidget.min.js
-// @require https://cdn.jsdelivr.net/gh/SaltzmanAlaric/weekly@v1.0.6/lib/L2Dwidget.0.min.js
+// @require      https://cdn.jsdelivr.net/gh/SaltzmanAlaric/weekly@v1.0.6/lib/L2Dwidget.min.js
+// @require      https://cdn.jsdelivr.net/gh/SaltzmanAlaric/weekly@v1.0.6/lib/L2Dwidget.0.min.js
 // ==/UserScript==
 
 (function() {
@@ -124,8 +125,9 @@
     if (document.body != null && document.querySelector("#live2d-settings") == null) {
         let settings = window.localStorage.getItem("live2dSettings");
         let Container = document.createElement('div');
+        Container.setAttribute("style","background-color: transparent;display:none;");
         Container.id = "live2d-settings-container";
-        var content= "<div id='live2d-settings'><fieldset id='deskAnimate'><legend style='color: red;' title='桌面动画助手相关设置'>桌面动画助手设置V" + version+"</legend>\n";
+        var content= "<div id='live2d-settings' style='padding:10px;position: fixed;top: 0.5vw;right: 1vw;z-index: 999999;text-align:left;background-color: white;'><fieldset id='deskAnimate' style='border:2px groove #ccc;-moz-border-radius:3px;border-radius:3px;padding:4px 9px 6px 9px;margin:2px;display:block;width:auto;height:auto'><legend style='color: red;' title='桌面动画助手相关设置'>桌面动画助手设置V" + version+"</legend>\n";
         content +="<table><tr><td>model类型：</td><td><input name='live2d-model' value='-1' "+ (settingsObj.model==-1? "checked" : "")+" type='radio'>随机</td></tr>";
         for(var i=0;i<models.length;i++) {
             content += "<tr><td><input name='live2d-model' value='"+i+"' "+(settingsObj.model==i? "checked" : "")+" type='radio'>"+models[i].model+"</td>";
@@ -139,7 +141,7 @@
         content += "<hr/><div>对话： <input name='live2d-dialog' value=true "+(settingsObj.dialog? "checked" : "")+" type='radio'>有&emsp; <input name='live2d-dialog' value=false "+(settingsObj.dialog? "" : "checked")+" type='radio'>无</div>";
         content += "<hr/><div>是否隐藏： <input name='live2d-hide' value=true "+(settingsObj.hide? "checked" : "")+" type='radio'>是<input name='live2d-hide' value=false "+(settingsObj.hide? "" : "checked")+" type='radio'>否";
         content += "<hr/><div><a style='color:red;' target='_blank' href='https://greasyfork.org/zh-CN/forum/post/discussion?script=392403'>联系作者,提建议,寻求帮助,脚本定制点我</a></div>";
-        content += "<div><button class='settings-btn' onclick='document.querySelector(\"#live2d-settings-container\").style.display = \"none\";'  style='float: left'> 取消 </button><button id='live2d-saveBtn' class='settings-btn' style='float: right;'> 保存 </button></div>";
+        content += "<div><button class='settings-btn' style='background-color: #479D18;color: #FFF;font-size: 18px;font-weight: bold;margin: 10px 20px 12px 0;min-width: 120px;position:relative;float: left;box-shadow: inset 0 10px 5px white;border: 1px solid #ccc;border-radius: 3px;padding: 2px 3px;cursor: pointer;width: 50px;float: left;' onclick='document.querySelector(\"#live2d-settings-container\").style.display = \"none\";'> 取消 </button><button id='live2d-saveBtn' class='settings-btn' style='background-color: #479D18;color: #FFF;font-size: 18px;font-weight: bold;margin: 10px 20px 12px 0;min-width: 120px;position:relative;float: left;box-shadow: inset 0 10px 5px white;border: 1px solid #ccc;border-radius: 3px;padding: 2px 3px;cursor: pointer;width: 50px;float: right;'> 保存 </button></div>";
         content += "</fieldset></div>";
         Container.innerHTML = content;
         try {
