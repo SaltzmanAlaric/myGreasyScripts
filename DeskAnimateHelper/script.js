@@ -1,12 +1,12 @@
 // ==UserScript==
 // @name         桌面动画助手
 // @namespace    https://saltzmanalaric.github.io
-// @version      1.5.2
+// @version      1.5.4
 // @description  Desk animate helper!
 // @author       Saltzman
 // @license      MIT
 // @date         2019-11-14
-// @modified     2019-11-20
+// @modified     2019-12-17
 // @exclude      *://greasyfork.org*
 // @exclude      *://github.com*
 // @exclude      *://*.github.io*
@@ -27,7 +27,7 @@
 (function() {
     'use strict';
 
-    var version = "1.5.2";
+    var version = "1.5.4";
 
      var models = [
         {model:"chitose", height:212},
@@ -85,15 +85,15 @@
         return document.insertBefore(pi, document.documentElement);
     }
     /*自定义css效果*/
-    addStyle("#live2d-settings-container{background-color: transparent;display:none;}\n#live2d-settings input[type='radio'] {border: 1px solid #B4B4B4;padding: 1px;margin: 3px;width: 13px;height: 13px;}\nfieldset#deskAnimate{border:2px groove #ccc;-moz-border-radius:3px;border-radius:3px;padding:4px 9px 6px 9px;margin:2px;display:block;width:auto;height:auto}\n#live2d-settings{padding:10px;position: fixed;top: 0.5vw;right: 1vw;z-index: 999999;text-align:left;background-color: white;}\n.settings-btn{background-color: #479D18;color: #FFF;font-size: 18px;font-weight: bold;margin: 10px 20px 12px 0;min-width: 120px;position:relative;float: left;box-shadow: inset 0 10px 5px white;border: 1px solid #ccc;border-radius: 3px;padding: 2px 3px;cursor: pointer;width: 50px;}");
+    //addStyle("#live2d-settings-container{background-color: transparent;display:none;}\n#live2d-settings input[type='radio'] {border: 1px solid #B4B4B4;padding: 1px;margin: 3px;width: 13px;height: 13px;}\nfieldset#deskAnimate{border:2px groove #ccc;-moz-border-radius:3px;border-radius:3px;padding:4px 9px 6px 9px;margin:2px;display:block;width:auto;height:auto}\n#live2d-settings{padding:10px;position: fixed;top: 0.5vw;right: 1vw;z-index: 999999;text-align:left;background-color: white;}\n.settings-btn{background-color: #479D18;color: #FFF;font-size: 18px;font-weight: bold;margin: 10px 20px 12px 0;min-width: 120px;position:relative;float: left;box-shadow: inset 0 10px 5px white;border: 1px solid #ccc;border-radius: 3px;padding: 2px 3px;cursor: pointer;width: 50px;}");
 
     var fmtDate = function() {
         var now = new Date();
         var year = now.getFullYear();
         var month = now.getMonth()+1;
         var date = now.getDate();
-        var week = "星期" + ["一","二","三","四","五","六","日"][now.getDay()];
-        return "今天是"+year+"年"+(month>9 ? month: "0"+month)+"月"+ (date>9 ? date: "0"+date)+"日（"+ week + "）";
+        var week = "星期" + ["日","一","二","三","四","五","六"][now.getDay()];
+        return "今天是"+year+"年"+("0"+month).slice(-2)+"月"+ ("0"+date).slice(-2)+"日（"+ week + "）";
     }
 
     var titleEle = document.getElementsByTagName("title")[0];
@@ -119,7 +119,6 @@
              timer = window.setInterval(move, 300);
         }
     });
-
 
      // 如果不存在的话，那么自己创建一个-copy from superPreload
     if (document.body != null && document.querySelector("#live2d-settings") == null) {
@@ -160,43 +159,73 @@
          });
      } catch (e) {}
 
-    var r = settingsObj.model == -1 ? parseInt(Math.random() * models.length) : settingsObj.model;
+
+
+
+
+var r = settingsObj.model == -1 ? parseInt(Math.random() * models.length) : settingsObj.model;
     //r=10;
     if (!document.getElementById("live2d-widget") && !settingsObj.hide) {
-        L2Dwidget.init({
-            "model": {
-                "jsonPath": "https://unpkg.com/live2d-widget-model-" + models[r].model + "@1.0.5/assets/"+ models[r].model + ".model.json",
-                "scale": 1
-            },
-            "display": {
-                "superSample": 2,
-                "width": 180,
-                "height": models[r].height,
-                "position": settingsObj.location,
-                "hOffset": 30,
-                "vOffset": 0
-            },
-            "mobile": {
-                "show": false,
-                "scale": 0.5
-            },
-            "react": {
-                "opacityDefault": 0.7,
-                "opacityOnHover": 0.2
-            },
-            "dialog": {
-                // 开启对话框
-                enable: settingsObj.dialog,
-                script: {
-                    // 每空闲 10 秒钟，显示一条一言
-                    'every idle 10s': '$hitokoto$',
-                    // 当触摸到角色身体
-                    'tap body': fmtDate(),
-                    // 当触摸到角色头部
-                    'tap face': '你正在浏览【'+title+"】"
+        setTimeout(function() {
+            L2Dwidget.init({
+                "model": {
+                    "jsonPath": "https://unpkg.com/live2d-widget-model-" + models[r].model + "@1.0.5/assets/"+ models[r].model + ".model.json",
+                    "scale": 1
+                },
+                "display": {
+                    "superSample": 2,
+                    "width": 180,
+                    "height": models[r].height,
+                    "position": settingsObj.location,
+                    "hOffset": 30,
+                    "vOffset": 0
+                },
+                "mobile": {
+                    "show": false,
+                    "scale": 0.5
+                },
+                "react": {
+                    "opacityDefault": 0.7,
+                    "opacityOnHover": 0.2
+                },
+                "dialog": {
+                    // 开启对话框
+                    enable: settingsObj.dialog,
+                    script: {
+                        // 每空闲 10 秒钟，显示一条一言
+                        'every idle 10s': '$hitokoto$',
+                        // 当触摸到角色身体
+                        'tap body': fmtDate(),
+                        // 当触摸到角色头部
+                        'tap face': '你正在浏览【'+title+"】"
+                    }
                 }
+            });//end init
+        }, 3000);
+        setTimeout(function() {
+            var widgetEle = document.getElementById("live2d-widget");
+            widgetEle.style.pointerEvents = "auto";
+            widgetEle.onmousedown = function(ev){
+                var oevent = ev || event;
+                var distanceX = oevent.clientX - widgetEle.offsetLeft;
+                var distanceY = oevent.clientY - widgetEle.offsetTop;
+                document.onmousemove = function(ev){
+                    var oevent = ev || event;
+                    var dx = oevent.clientX - distanceX;
+                    var dy = oevent.clientY - distanceY;
+                    if (dx < window.innerWidth-180 && dx >= 0) {
+                        widgetEle.style.left = dx + 'px';
+                    }
+                    if (dy < window.innerHeight-models[r].height && dy >= 0) {
+                        widgetEle.style.top = dy + 'px';
+                    }
+                };
+                document.onmouseup = function(){
+                    document.onmousemove = null;
+                    document.onmouseup = null;
+                };
             }
-        });//end init
+        }, 5000);
     } // end if
 
 })();
